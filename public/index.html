@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HandMouse — controle o cursor com a mão</title>
+  <meta name="description" content="Use a webcam para controlar o cursor com gestos da mão. Tudo roda no seu navegador; o vídeo não sai do seu computador.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>✋ HandMouse</h1>
+    <p>Navegue só com a mão: o MediaPipe lê seus gestos pela webcam e eles viram ações de mouse.</p>
+    <button id="start" class="primary">Ativar câmera</button>
+    <p id="msg" role="status">O navegador vai pedir permissão para usar a câmera. O vídeo é processado localmente e nunca é enviado a servidor.</p>
+  </header>
+
+  <main>
+    <section class="card" data-hot>
+      <h2>1 · Clique</h2>
+      <p>Pinça com indicador + polegar.</p>
+      <button id="counter">Cliques: 0</button>
+      <label class="toggle"><input type="checkbox" id="chk"> <span>Marque-me com a pinça</span></label>
+      <div id="dbl" class="zone">Duplo clique aqui (duas pinças rápidas)</div>
+    </section>
+
+    <section class="card">
+      <h2>2 · Clique direito</h2>
+      <p>Pinça com dedo médio + polegar.</p>
+      <div id="rz" class="zone">Clique direito aqui</div>
+    </section>
+
+    <section class="card">
+      <h2>3 · Arrastar</h2>
+      <p>Segure a pinça e mexa a mão.</p>
+      <div id="arena"><div id="ball">⬤</div><div id="target">solte aqui</div></div>
+      <p id="dropmsg"></p>
+    </section>
+
+    <section class="card">
+      <h2>4 · Rolar</h2>
+      <p>Faça um “V” com dois dedos e suba ou desça a mão.</p>
+      <div class="scrollbox" id="sbox"></div>
+    </section>
+
+    <section class="card">
+      <h2>5 · Pausa</h2>
+      <p>Punho fechado por 1 segundo pausa tudo. Teste digitando:</p>
+      <textarea rows="3" placeholder="Digite aqui com o teclado…"></textarea>
+    </section>
+
+    <section class="card tall">
+      <h2>Fim da página</h2>
+      <p>Role até aqui com o gesto “V”. 🎉</p>
+    </section>
+  </main>
+
+  <aside id="panel" hidden>
+    <div class="status" id="status">ATIVO | —</div>
+    <div class="video-wrap">
+      <video id="video" playsinline muted></video>
+      <canvas id="overlay" width="640" height="480"></canvas>
+      <div class="roi"></div>
+      <div class="fistbar"><span id="fistbar"></span></div>
+    </div>
+    <table id="legend">
+      <tr data-mode="CURSOR"><td>Indicador esticado</td><td>→ Mover o cursor</td></tr>
+      <tr data-mode="PINCA"><td>Pinça indicador + polegar</td><td>→ Clique esquerdo</td></tr>
+      <tr data-mode="CLIQUE DIREITO"><td>Pinça médio + polegar</td><td>→ Clique direito</td></tr>
+      <tr data-mode="ARRASTAR"><td>Segurar a pinça e mover</td><td>→ Arrastar e soltar</td></tr>
+      <tr data-mode="SCROLL"><td>V (indicador + médio) ↑ / ↓</td><td>→ Rolar a página</td></tr>
+      <tr data-mode="PUNHO"><td>Punho por 1 s</td><td>→ Pausar / retomar</td></tr>
+    </table>
+    <div class="buttons"><button id="pause">Pausar</button><button id="quit">Sair</button></div>
+  </aside>
+
+  <div id="cursor" hidden></div>
+  <div id="ctx" class="menu" hidden>
+    <div class="menu-item">Copiar</div>
+    <div class="menu-item">Colar</div>
+    <div class="menu-item">Inspecionar</div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
