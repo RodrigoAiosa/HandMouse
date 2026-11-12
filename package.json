@@ -1,0 +1,10 @@
+{
+  "name": "handmouse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Controle o cursor com gestos da mão pela webcam",
+  "scripts": {
+    "build": "node -e \"require('fs').accessSync('public/index.html'); console.log('site estatico em public/')\"",
+    "test": "node tests/engine.test.mjs && python3 -m unittest discover -s tests"
+  }
+}

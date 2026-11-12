@@ -1,0 +1,1 @@
+# Sem dependências: api/config.py usa só a biblioteca padrão.
